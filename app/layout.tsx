@@ -15,19 +15,42 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Edgar Venegas | Software Engineer",
+  title: {
+    default: "Edgar Venegas | Software Engineer",
+    template: "%s | Edgar Venegas",
+  },
+
   description:
-    "Portfolio profesional de Edgar Venegas, estudiante de Ingeniería en Sistemas y desarrollador de software.",
+    "Portfolio de Edgar Venegas, Software Engineer enfocado en construir software para resolver problemas reales.",
+
   keywords: [
     "Edgar Venegas",
     "Software Engineer",
-    "Web Developer",
+    "Software Developer",
+    "Full-Stack Developer",
     "Next.js",
     "React",
     "TypeScript",
+    "Node.js",
     "AWS",
   ],
+
   authors: [{ name: "Edgar Venegas" }],
+  creator: "Edgar Venegas",
+
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    title: "Edgar Venegas | Software Engineer",
+    description:
+      "Portfolio de Edgar Venegas, Software Engineer enfocado en construir software para resolver problemas reales.",
+    siteName: "Edgar Venegas",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
