@@ -30,6 +30,9 @@ export default function SubjectList({
   return (
     <div className="mt-4">
       <button
+        type="button"
+        aria-expanded={open}
+        aria-controls="subjects-list"
         onClick={() => setOpen((v) => !v)}
         className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.14em] text-white/50 underline decoration-white/20 underline-offset-4 transition-colors duration-300 hover:text-white/80"
       >
@@ -37,12 +40,13 @@ export default function SubjectList({
       </button>
 
       {open && (
-        <div className="mt-4">
+        <div id="subjects-list" className="mt-4">
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={searchPlaceholder}
+            aria-label={searchPlaceholder}
             className="w-full max-w-xs rounded-full border border-white/15 bg-transparent px-4 py-2 text-sm text-white placeholder:text-white/30 outline-none transition-colors duration-300 focus:border-white/40"
           />
 
