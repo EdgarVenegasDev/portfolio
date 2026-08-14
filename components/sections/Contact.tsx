@@ -26,11 +26,11 @@ export default function Contact() {
                 <div key={channel.key} className="flex flex-col items-center text-center">
                   <Magnetic strength={0.35}>
                     {channel.external ? (
-                      <a href={channel.href} target="_blank" rel="noopener noreferrer" className="group flex h-16 w-16 items-center justify-center rounded-full border border-[var(--line)] text-[var(--ink)] transition-all duration-500 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white sm:h-20 sm:w-20">
+                      <a href={channel.href} target="_blank" rel="noopener noreferrer" aria-label={channel.value} className="group flex h-16 w-16 items-center justify-center rounded-full border border-[var(--line)] text-[var(--ink)] transition-all duration-500 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white sm:h-20 sm:w-20">
                         <Icon size={24} />
                       </a>
                     ) : (
-                      <a href={channel.href} className="group flex h-16 w-16 items-center justify-center rounded-full border border-[var(--line)] text-[var(--ink)] transition-all duration-500 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white sm:h-20 sm:w-20">
+                      <a href={channel.href} aria-label={channel.value} className="group flex h-16 w-16 items-center justify-center rounded-full border border-[var(--line)] text-[var(--ink)] transition-all duration-500 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white sm:h-20 sm:w-20">
                         <Icon size={24} />
                       </a>
                     )}
