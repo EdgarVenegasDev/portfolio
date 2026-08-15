@@ -14,6 +14,9 @@ jobs:
     name: Lint, TypeScript, Tests and Build
     runs-on: ubuntu-latest
 
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/portfolio
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -26,6 +29,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
 
       - name: Run ESLint
         run: npm run lint
