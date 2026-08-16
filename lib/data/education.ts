@@ -6,14 +6,14 @@ export type Subject = {
 export type School = {
   institution: string;
   degree: string;
-  image: string; // reserva en /public/schools/, sube tu foto ahí
+  image: string; 
   subjects: Subject[];
 };
 
 export type Course = {
   title: string;
   issuer?: string;
-  image: string; // reserva en /public/certificates/
+  image: string; 
 };
 
 export type EducationContent = {
@@ -213,13 +213,13 @@ export const education: Record<"en" | "es", EducationContent> = {
       {
         institution: "Instituto Tecnológico de Estudios Superiores de Los Cabos",
         degree: "Systems Engineering",
-        image: "/schools/iteslc.jpg",
+        image: "/schools/iteslc.png",
         subjects: iteslcSubjectsEn,
       },
       {
         institution: "Universidad de Guadalajara",
         degree: "B.Sc. in Information Technology",
-        image: "/schools/udg.jpg",
+        image: "/schools/udg.png",
         subjects: udgSubjectsEn,
       },
     ],
@@ -229,7 +229,7 @@ export const education: Record<"en" | "es", EducationContent> = {
     noResults: "No subjects match your search.",
     coursesLabel: "Certifications & Courses",
     courses: [
-      { title: "AWS Cloud Practitioner", image: "/certificates/aws-cloud-practitioner.jpg" },
+      { title: "AWS Cloud Practitioner", image: "/certificates/aws-cloud-practitioner.png" },
     ],
     comingSoon: "More on the way.",
     sololearnLabel: "Also learning on",

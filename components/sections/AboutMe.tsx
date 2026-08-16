@@ -1,6 +1,5 @@
 "use client";
 
-import GeometricShape from "@/components/motion/GeometricShape";
 import ColorWipe from "@/components/motion/ColorWipe";
 import Reveal from "@/components/motion/Reveal";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
@@ -12,24 +11,13 @@ export default function AboutMe() {
   return (
     <ColorWipe from="var(--story-maroon)">
       <section id="about" className="relative overflow-hidden bg-[var(--story-navy)] py-32 sm:py-40">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 opacity-[0.08] sm:-right-10 sm:-top-10">
-          <svg viewBox="0 0 400 400" width="440" height="440">
-            <circle cx="200" cy="200" r="190" fill="none" stroke="#ffffff" strokeWidth="1" />
-            <circle cx="200" cy="200" r="140" fill="none" stroke="#ffffff" strokeWidth="1" />
-            <circle cx="200" cy="200" r="90" fill="none" stroke="#ffffff" strokeWidth="1" />
-          </svg>
-        </div>
-
         <div className="relative mx-auto max-w-[760px] px-6 sm:px-10 lg:px-12">
           <Reveal>
-            <div className="flex items-center gap-4">
-              <GeometricShape type="circle" size={36} stroke="#ffffff" strokeWidth={1.2} />
-              <p className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.3em] text-white/50">
-                {t.about.label}
-              </p>
-            </div>
+            <p className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.3em] text-white/50">
+              {t.about.label}
+            </p>
 
-            <p className="mt-8 text-3xl font-medium leading-[1.25] tracking-[-0.02em] text-white sm:text-4xl">
+            <p className="mt-8 font-[family-name:var(--font-inter)] text-3xl font-medium leading-[1.25] tracking-[-0.02em] text-white sm:text-4xl">
               {t.about.intro}
             </p>
             <p className="mt-5 max-w-xl text-base leading-7 text-white/60">
@@ -46,7 +34,7 @@ export default function AboutMe() {
               <div className="mt-6 flex flex-col gap-3">
                 {t.about.languages.map((lang) => (
                   <div key={lang.name} className="flex items-baseline justify-between gap-6">
-                    <span className="text-lg font-medium text-white">{lang.name}</span>
+                    <span className="font-[family-name:var(--font-inter)] text-lg font-medium text-white">{lang.name}</span>
                     <span className="font-[family-name:var(--font-mono)] text-xs text-white/50">{lang.level}</span>
                   </div>
                 ))}

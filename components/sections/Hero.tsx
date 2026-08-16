@@ -34,7 +34,7 @@ export default function Hero() {
           style={{ opacity: contentOpacity, y: contentY }}
           className="mt-14 max-w-2xl text-center"
         >
-          <p className="text-2xl font-medium leading-snug tracking-[-0.02em] text-[var(--ink)] sm:text-4xl">
+          <p className="font-[family-name:var(--font-inter)] text-2xl font-medium leading-snug tracking-[-0.02em] text-[var(--ink)] sm:text-4xl">
             {t.hero.quote}
           </p>
 
@@ -45,18 +45,7 @@ export default function Hero() {
             {t.hero.role}
           </p>
 
-          <Magnetic>
-            <a href="#work" className="group mt-12 inline-flex flex-col items-center gap-3 font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.2em] text-[var(--ink)]">
-              {t.hero.cta}
-              <motion.span
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] transition-colors duration-500 group-hover:border-[var(--accent)] group-hover:bg-[var(--accent)] group-hover:text-white"
-              >
-                ↓
-              </motion.span>
-            </a>
-          </Magnetic>
+        
         </motion.div>
       </div>
     </div>

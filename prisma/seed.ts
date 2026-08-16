@@ -8,11 +8,19 @@ if (!connectionString) {
   throw new Error("DATABASE_URL is not defined");
 }
 
+const isLocalDatabase =
+  connectionString.includes("localhost") ||
+  connectionString.includes("127.0.0.1");
+
 const adapter = new PrismaPg({
   connectionString,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  ...(isLocalDatabase
+    ? {}
+    : {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      }),
 });
 
 const prisma = new PrismaClient({ adapter });
@@ -65,6 +73,31 @@ async function main() {
       liveUrl: null,
       technologies:
         "PHP, Apache, MySQL, JavaScript, HTML, CSS, Tailwind CSS",
+    },
+  });
+
+  await prisma.project.upsert({
+    where: {
+      slug: "portfolio",
+    },
+    update: {
+      title: "Personal Portfolio",
+      description:
+        "Production-ready developer portfolio built with Next.js, TypeScript and PostgreSQL, featuring a dynamic project API, Prisma ORM and automated Docker deployment on AWS.",
+      githubUrl: "https://github.com/EdgarVenegasDev/portfolio",
+      liveUrl: "https://edgarabrahamportfolio.com",
+      technologies:
+        "Next.js, React, TypeScript, PostgreSQL, Prisma, Docker, AWS EC2, Nginx, GitHub Actions, GHCR, AWS Systems Manager",
+    },
+    create: {
+      slug: "portfolio",
+      title: "Personal Portfolio",
+      description:
+        "Production-ready developer portfolio built with Next.js, TypeScript and PostgreSQL, featuring a dynamic project API, Prisma ORM and automated Docker deployment on AWS.",
+      githubUrl: "https://github.com/EdgarVenegasDev/portfolio",
+      liveUrl: "https://edgarabrahamportfolio.com",
+      technologies:
+        "Next.js, React, TypeScript, PostgreSQL, Prisma, Docker, AWS EC2, Nginx, GitHub Actions, GHCR, AWS Systems Manager",
     },
   });
 
