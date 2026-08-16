@@ -5,52 +5,129 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: us-east-2
+  INSTANCE_ID: i-0571a7dee96746060
+  DOCKER_IMAGE: ghcr.io/edgarvenegasdev/portfolio:latest
+
 jobs:
   deploy:
     name: Deploy production to EC2
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy to EC2
-        uses: appleboy/ssh-action@v1.2.2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v6
         with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          port: ${{ secrets.EC2_SSH_PORT }}
-          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-          script: |
-            set -e
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+          role-session-name: GitHubActionsPortfolioDeploy
 
-            echo "Pulling latest Docker image..."
-            docker pull ghcr.io/edgarvenegasdev/portfolio:latest
+      - name: Verify AWS identity
+        run: |
+          echo "AWS identity:"
+          aws sts get-caller-identity
 
-            echo "Stopping current container..."
-            docker stop portfolio || true
+      - name: Deploy to EC2 via Systems Manager
+        id: deploy
+        shell: bash
+        run: |
+          set -e
 
-            echo "Removing current container..."
-            docker rm portfolio || true
+          echo "Sending deployment command to EC2..."
 
-            echo "Starting new container..."
-            docker run -d \
-              --name portfolio \
-              --restart unless-stopped \
-              --env-file ~/portfolio.env \
-              -p 127.0.0.1:3000:3000 \
-              ghcr.io/edgarvenegasdev/portfolio:latest
+          COMMAND_ID=$(aws ssm send-command \
+            --document-name "AWS-RunShellScript" \
+            --instance-ids "${INSTANCE_ID}" \
+            --comment "Deploy portfolio from GitHub Actions" \
+            --parameters '{
+              "commands": [
+                "set -e",
+                "echo \"Pulling latest Docker image...\"",
+                "docker pull '"${DOCKER_IMAGE}"'",
+                "echo \"Stopping current container...\"",
+                "docker stop portfolio || true",
+                "echo \"Removing current container...\"",
+                "docker rm portfolio || true",
+                "echo \"Starting new container...\"",
+                "docker run -d --name portfolio --restart unless-stopped --env-file ~/portfolio.env -p 127.0.0.1:3000:3000 '"${DOCKER_IMAGE}"'",
+                "echo \"Waiting for application...\"",
+                "sleep 5",
+                "echo \"Checking application...\"",
+                "curl --fail --silent --show-error http://127.0.0.1:3000 > /dev/null",
+                "echo \"Checking API...\"",
+                "curl --fail --silent --show-error http://127.0.0.1:3000/api/projects > /dev/null",
+                "echo \"Deployment successful!\"",
+                "docker ps --filter name=portfolio"
+              ]
+            }' \
+            --query "Command.CommandId" \
+            --output text)
 
-            echo "Waiting for application..."
-            sleep 5
+          echo "SSM Command ID: ${COMMAND_ID}"
 
-            echo "Checking application..."
-            curl --fail --silent --show-error \
-              http://127.0.0.1:3000 \
-              > /dev/null
+          echo "Waiting for deployment to finish..."
 
-            echo "Checking API..."
-            curl --fail --silent --show-error \
-              http://127.0.0.1:3000/api/projects \
-              > /dev/null
+          for i in {1..30}; do
+            STATUS=$(aws ssm get-command-invocation \
+              --command-id "${COMMAND_ID}" \
+              --instance-id "${INSTANCE_ID}" \
+              --query "Status" \
+              --output text)
 
-            echo "Deployment successful!"
+            echo "Attempt ${i}/30 - Status: ${STATUS}"
 
-            docker ps --filter name=portfolio
+            case "${STATUS}" in
+              Success)
+                echo "Deployment completed successfully."
+
+                echo ""
+                echo "Remote output:"
+                aws ssm get-command-invocation \
+                  --command-id "${COMMAND_ID}" \
+                  --instance-id "${INSTANCE_ID}" \
+                  --query "StandardOutputContent" \
+                  --output text
+
+                exit 0
+                ;;
+
+              Failed|Cancelled|TimedOut|Cancelling)
+                echo "Deployment failed."
+
+                echo ""
+                echo "Remote output:"
+                aws ssm get-command-invocation \
+                  --command-id "${COMMAND_ID}" \
+                  --instance-id "${INSTANCE_ID}" \
+                  --query "StandardOutputContent" \
+                  --output text
+
+                echo ""
+                echo "Remote error:"
+                aws ssm get-command-invocation \
+                  --command-id "${COMMAND_ID}" \
+                  --instance-id "${INSTANCE_ID}" \
+                  --query "StandardErrorContent" \
+                  --output text
+
+                exit 1
+                ;;
+
+              Pending|InProgress|Delayed)
+                sleep 5
+                ;;
+
+              *)
+                echo "Unknown status: ${STATUS}"
+                sleep 5
+                ;;
+            esac
+          done
+
+          echo "Deployment timed out waiting for SSM."
+          exit 1
