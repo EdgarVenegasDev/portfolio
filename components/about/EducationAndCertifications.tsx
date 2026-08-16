@@ -53,7 +53,6 @@ export default function EducationAndCertifications() {
         </div>
       </Reveal>
 
-      {/* Courses / Certifications */}
       <Reveal delay={0.12}>
         <div className="mt-14 border-t border-white/10 pt-10">
           <p className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.2em] text-white/40">
@@ -98,7 +97,7 @@ export default function EducationAndCertifications() {
             <p className="mt-1 text-base font-medium text-white">{data.sololearnName}</p>
           </div>
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/20 text-white transition-all duration-500 group-hover:border-white group-hover:bg-white group-hover:text-[var(--story-navy)]">
-            →
+            
           </span>
         </a>
       </Reveal>

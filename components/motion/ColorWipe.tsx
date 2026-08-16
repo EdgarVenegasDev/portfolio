@@ -9,11 +9,7 @@ type ColorWipeProps = {
   className?: string;
 };
 
-/**
- * Cubre la sección con el color anterior y lo "encoge" en círculo
- * desde arriba-centro conforme se hace scroll, revelando el color
- * y contenido reales de la sección debajo.
- */
+
 export default function ColorWipe({ from, children, className = "" }: ColorWipeProps) {
   const ref = useRef<HTMLDivElement>(null);
 

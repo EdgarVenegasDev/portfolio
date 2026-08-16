@@ -8,7 +8,7 @@ import Reveal from "@/components/motion/Reveal";
 
 const channels = [
   { key: "email", icon: Mail, value: "abraham_venegaz@hotmail.com", href: "mailto:abraham_venegaz@hotmail.com", external: false },
-  { key: "phone", icon: Phone, value: "+52 624 000 0000", href: "tel:+526240000000", external: false },
+  { key: "phone", icon: Phone, value: "+52 33 1881 9794", href: "tel:+523318819794", external: false },
   { key: "linkedin", icon: LinkedinIcon, value: "linkedin.com/in/edgar-venegas", href: "https://linkedin.com/in/edgar-venegas", external: true },
   { key: "github", icon: GithubIcon, value: "github.com/EdgarVenegasDev", href: "https://github.com/EdgarVenegasDev", external: true },
 ];

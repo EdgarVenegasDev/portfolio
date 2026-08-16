@@ -1,9 +1,17 @@
 import ParallaxImageCard from "@/components/motion/ParallaxImageCard";
 import Reveal from "@/components/motion/Reveal";
-import type { CaseStudyContent } from "@/lib/data/caseStudies";
+
+type CaseStudyHeroContent = {
+  category: string;
+  title: string;
+  tagline: string;
+  summary: string;
+  live?: string;
+  github: string;
+};
 
 type CaseStudyHeroProps = {
-  content: CaseStudyContent;
+  content: CaseStudyHeroContent;
   liveLabel: string;
   githubLabel: string;
 };
