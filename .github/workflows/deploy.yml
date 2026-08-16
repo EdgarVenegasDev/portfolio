@@ -47,6 +47,9 @@ jobs:
             --parameters '{
               "commands": [
                 "set -e",
+                "echo \"Checking environment file...\"",
+                "test -f /home/ec2-user/portfolio.env",
+                "echo \"Environment file found.\"",
                 "echo \"Pulling latest Docker image...\"",
                 "docker pull '"${DOCKER_IMAGE}"'",
                 "echo \"Stopping current container...\"",
@@ -54,9 +57,11 @@ jobs:
                 "echo \"Removing current container...\"",
                 "docker rm portfolio || true",
                 "echo \"Starting new container...\"",
-                "docker run -d --name portfolio --restart unless-stopped --env-file ~/portfolio.env -p 127.0.0.1:3000:3000 '"${DOCKER_IMAGE}"'",
+                "docker run -d --name portfolio --restart unless-stopped --env-file /home/ec2-user/portfolio.env -p 127.0.0.1:3000:3000 '"${DOCKER_IMAGE}"'",
                 "echo \"Waiting for application...\"",
                 "sleep 5",
+                "echo \"Checking container...\"",
+                "docker ps --filter name=portfolio",
                 "echo \"Checking application...\"",
                 "curl --fail --silent --show-error http://127.0.0.1:3000 > /dev/null",
                 "echo \"Checking API...\"",
