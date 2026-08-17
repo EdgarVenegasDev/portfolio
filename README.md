@@ -499,6 +499,616 @@ This project allowed me to strengthen my experience with:
 
 https://edgarabrahamportfolio.com
 
+
+
+
+<div align="center">
+
+# Cabo 101 Transportation
+
+### Private transportation and booking platform for Los Cabos
+
+A modern web platform for a private transportation company in Los Cabos, Baja California Sur, Mexico.
+
+The project provides customers with an interactive booking experience for private airport transportation, including destination selection, vehicle options, trip details and online payment processing.
+
+</div>
+
+---
+
+# Live Website
+
+https://cabo101.com.mx
+
+---
+
+# Project Overview
+
+Cabo 101 Transportation is a full-stack web application developed to modernize the company's online reservation experience.
+
+The platform allows customers to create transportation reservations by selecting their pickup location, destination, travel date, passengers, vehicle and trip type.
+
+The application was designed with a focus on responsive UI, usability and a streamlined booking flow.
+
+---
+
+# Main Features
+
+## Customer Experience
+
+- Private airport transportation booking
+- One Way / Round Trip reservations
+- Pickup and destination selection
+- Passenger information
+- Travel date and time selection
+- Vehicle selection
+- Trip summary
+- Dynamic booking information
+- Responsive design
+- Mobile-friendly interface
+
+## Location Selection
+
+- Google Maps integration
+- Address autocomplete
+- Location selection for transportation routes
+- Location restrictions focused on Baja California Sur
+
+## Online Payments
+
+- Mercado Pago integration
+- Secure payment flow
+- Payment status handling
+- Reservation processing after payment
+
+## User Interface
+
+- Responsive design
+- Interactive booking components
+- Modern transportation-focused UI
+- Animated sections
+- Hero video background
+- Popular transportation options
+- Interactive content sections
+- Professional footer
+
+---
+
+# Technology Stack
+
+| Technology | Purpose |
+|------------|---------|
+| Next.js | Full-stack React framework |
+| React | User interface |
+| TypeScript | Type-safe development |
+| Tailwind CSS | Styling and responsive UI |
+| JavaScript | Client-side functionality |
+| Google Maps API | Location search and autocomplete |
+| Mercado Pago | Online payments |
+| Node.js | Server-side runtime |
+
+---
+
+# Application Architecture
+
+```text
+                         CUSTOMER
+                            │
+                            ▼
+                ┌────────────────────────┐
+                │     Next.js Website    │
+                ├────────────────────────┤
+                │ Home                   │
+                │ Transportation         │
+                │ Booking                │
+                │ Vehicles               │
+                └───────────┬────────────┘
+                            │
+                            ▼
+                ┌────────────────────────┐
+                │     Booking System     │
+                ├────────────────────────┤
+                │ Trip Information       │
+                │ Pickup Location        │
+                │ Destination            │
+                │ Trip Type              │
+                │ Date & Time             │
+                │ Vehicle Selection      │
+                │ Passenger Information  │
+                └───────────┬────────────┘
+                            │
+                 ┌──────────┴───────────┐
+                 │                      │
+                 ▼                      ▼
+        ┌──────────────────┐   ┌──────────────────┐
+        │   Google Maps    │   │   Mercado Pago   │
+        │   Location       │   │     Payment      │
+        │   Autocomplete   │   │    Processing    │
+        └──────────────────┘   └────────┬─────────┘
+                                        │
+                                        ▼
+                              ┌────────────────────┐
+                              │ Reservation        │
+                              │ Confirmation       │
+                              └────────────────────┘
+```
+
+---
+
+# Booking Flow
+
+```
+Customer
+   │
+   ▼
+Select Pickup Location
+   │
+   ▼
+Select Destination
+   │
+   ▼
+Select Trip Type
+   │
+   ├── One Way
+   │
+   └── Round Trip
+   │
+   ▼
+Select Date & Time
+   │
+   ▼
+Select Vehicle
+   │
+   ▼
+Enter Passenger Information
+   │
+   ▼
+Review Reservation
+   │
+   ▼
+Mercado Pago
+   │
+   ▼
+Payment
+   │
+   ▼
+Reservation Confirmation
+```
+
+---
+
+# Project Structure
+
+```
+cabo101/
+│
+├── app/
+│   ├── booking/
+│   ├── payment/
+│   ├── api/
+│   │   ├── booking/
+│   │   └── process-payment/
+│   │
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components/
+│   ├── Navbar
+│   ├── BookingForm
+│   ├── CheckoutForm
+│   ├── PopularTransfers
+│   └── ...
+│
+├── lib/
+│   ├── hotels
+│   ├── zones
+│   └── ...
+│
+├── public/
+│   ├── images/
+│   └── videos/
+│
+├── styles/
+│   └── globals.css
+│
+├── .env.local
+├── next.config
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+---
+
+# Integrations
+
+## Google Maps
+
+Google Maps is used to provide location autocomplete and simplify pickup and destination selection during the booking process.
+
+The location search is focused on destinations within Baja California Sur.
+
+## Mercado Pago
+
+Mercado Pago is integrated into the booking flow to provide online payment processing.
+
+The payment experience is integrated directly into the application instead of redirecting customers to an external checkout page.
+
+---
+
+# Responsive Design
+
+The platform was designed to work across:
+
+- Desktop
+- Laptop
+- Tablet
+- Mobile devices
+
+The booking experience adapts to smaller screens while maintaining the complete reservation flow.
+
+---
+
+# Key Development Areas
+
+This project involved working with:
+
+- Full-stack Next.js development
+- React component architecture
+- TypeScript
+- API routes
+- Form state management
+- Booking workflows
+- Payment integration
+- Google Maps integration
+- Responsive UI development
+- Environment variables
+- Client/server separation
+- Production deployment
+
+---
+
+# What I Learned
+
+Through this project I improved my experience with:
+
+- Next.js application architecture
+- React development
+- TypeScript
+- Full-stack web development
+- Payment integrations
+- Third-party APIs
+- Booking systems
+- Responsive design
+- API development
+- Production web applications
+
+---
+
+
+
+
+
+
+
+
+<div align="center">
+
+# Cabo Bay Transportation
+
+### Premium Airport Transfer Reservation Platform for Los Cabos
+
+A full-stack transportation reservation platform developed for a private transportation company in Los Cabos, Mexico.
+
+The project was rebuilt from an existing WordPress website into a custom web application, including the customer booking experience and an administration dashboard for managing reservations, destinations, pricing, gallery content, and other website information.
+
+![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+
+</div>
+
+---
+
+# Live Website
+
+**https://cabo-bay.com**
+
+---
+
+# Project Overview
+
+Cabo Bay Transportation is a production web application developed for a private transportation company operating in Los Cabos, Baja California Sur.
+
+The original website was based on a basic WordPress implementation. The project involved rebuilding the website as a custom application using PHP, MySQL, JavaScript, and Tailwind CSS.
+
+The platform provides customers with an online transportation reservation system while giving administrators a dedicated dashboard for managing reservations, pricing, destinations, gallery content, and website information.
+
+---
+
+# Main Features
+
+## Customer Website
+
+- Online transportation reservations
+- Airport ⇄ Hotel transfers
+- One Way / Round Trip reservations
+- Dynamic transportation pricing
+- Online payment processing
+- Reservation confirmation
+- Email notifications
+- Popular destinations
+- Responsive design
+- Gallery with images, GIFs, and videos
+- Wedding transportation information
+- Contact section
+
+---
+
+# Administration Dashboard
+
+The platform includes a dedicated administration system for managing the website and reservations.
+
+### Authentication
+
+- Secure administrator login
+- Session-based authentication
+- Protected administration routes
+
+### Reservation Management
+
+Administrators can:
+
+- View reservations
+- Search reservations
+- Filter reservations by status
+- View customer and trip information
+- Update reservation status
+- Send confirmation emails
+
+### Pricing & Destination Management
+
+Administrators can manage:
+
+- Transportation destinations
+- One Way pricing
+- Round Trip pricing
+- Hotel assignments
+- Popular destinations
+- Destination availability
+
+### Gallery Management
+
+The custom CMS supports:
+
+- Image uploads
+- GIF uploads
+- Video uploads
+- Content ordering
+- Visibility controls
+- Homepage gallery management
+
+---
+
+# Online Booking
+
+Customers can reserve transportation by providing their trip information, including:
+
+- Transportation type
+- Destination
+- Travel date
+- Number of passengers
+- Customer information
+- Trip details
+
+The system calculates the corresponding transportation price and processes the reservation through the platform.
+
+---
+
+# Online Payments
+
+The platform includes online payment functionality integrated into the reservation workflow.
+
+Customers can complete their transportation reservation online without requiring manual payment processing.
+
+Payment functionality is connected to the reservation process so that administrators can manage reservations after the booking is submitted.
+
+---
+
+# Email Notifications
+
+The system uses **PHPMailer** to send transactional emails related to reservations.
+
+Examples include:
+
+- Reservation confirmations
+- Booking notifications
+- Reservation status updates
+
+---
+
+
+
+# Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| PHP 8.x | Backend application |
+| MySQL | Database |
+| JavaScript | Client-side functionality |
+| Tailwind CSS | Responsive UI |
+| HTML5 | Application structure |
+| CSS3 | Styling |
+| PHPMailer | Email notifications |
+| Apache | Web server |
+
+---
+
+# Application Architecture
+
+```text
+                         CUSTOMER
+                            │
+                            ▼
+                 ┌─────────────────────┐
+                 │    Public Website   │
+                 ├─────────────────────┤
+                 │ Home                │
+                 │ Booking             │
+                 │ Weddings            │
+                 │ Contact             │
+                 └──────────┬──────────┘
+                            │
+                            ▼
+                 ┌─────────────────────┐
+                 │   PHP Application   │
+                 │     Logic Layer     │
+                 └──────────┬──────────┘
+                            │
+                 ┌──────────┴──────────┐
+                 │                     │
+                 ▼                     ▼
+        ┌─────────────────┐   ┌─────────────────┐
+        │ MySQL Database  │   │ Payment System  │
+        └────────┬────────┘   └─────────────────┘
+                 │
+                 ▼
+        ┌──────────────────────────────┐
+        │     Administration Panel     │
+        ├──────────────────────────────┤
+        │ Reservations                 │
+        │ Pricing                      │
+        │ Destinations                 │
+        │ Gallery                      │
+        │ Authentication               │
+        └──────────────────────────────┘
+```
+
+
+# Project Structure
+
+```
+cabo-bay/
+│
+├── admin/
+│   ├── dashboard/
+│   ├── reservations/
+│   ├── destinations/
+│   ├── pricing/
+│   └── gallery/
+│
+├── api/
+│
+├── assets/
+│   ├── css/
+│   ├── js/
+│   └── images/
+│
+├── config/
+│
+├── data/
+│
+├── images/
+│
+├── includes/
+│   ├── authentication/
+│   └── email/
+│
+├── pages/
+│
+├── .gitignore
+├── .htaccess
+├── error.php
+├── index.php
+├── success.php
+├── tailwind.config.js
+└── README.md
+```
+
+
+
+# Key Functionalities
+Reservation System
+Customer reservations
+Airport ⇄ Hotel transportation
+One Way / Round Trip
+Trip information management
+Reservation references
+Reservation status management
+Email confirmations
+Pricing Engine
+Destination-based pricing
+One Way pricing
+Round Trip pricing
+Popular destinations
+Dynamic pricing configuration
+Payment Processing
+Online payment integration
+Payment workflow connected to reservations
+Reservation/payment processing
+Gallery CMS
+Image uploads
+GIF uploads
+Video uploads
+Content ordering
+Visibility controls
+Administration
+Secure authentication
+Reservation management
+Pricing management
+Destination management
+Gallery management
+Content management
+Development Highlights
+
+This project involved rebuilding an existing WordPress website into a custom web application.
+
+Key development areas included:
+
+Full-stack web development
+PHP application architecture
+MySQL database design
+CRUD operations
+Authentication and authorization
+Reservation workflows
+Payment integration
+Email automation
+Custom CMS development
+Responsive UI development
+Production deployment
+Future Improvements
+
+Potential future improvements include:
+
+Analytics dashboard
+Multi-language support
+PDF invoices
+SMS notifications
+Advanced reservation reporting
+What I Learned
+
+This project strengthened my experience with:
+
+Full-stack development
+PHP
+MySQL
+Database design
+CRUD operations
+Authentication
+Payment integration
+Email automation
+CMS development
+Responsive web design
+Production application deployment
+
+
+
+
+
+
+
+
 💻 **GitHub**
 
 https://github.com/EdgarVenegasDev/portfolio
